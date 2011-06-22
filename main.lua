@@ -10,7 +10,7 @@ require ("Ball");
 require ("GameManager");
 require ("Menu")
 
-__NUMBER_OF_PLATFROMS__ = 100;
+__NUMBER_OF_PLATFROMS__ = 101;
 
 platforms = {}
 
