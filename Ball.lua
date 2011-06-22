@@ -11,7 +11,7 @@ function Ball.init(self)
 	self.frame = Rect.new();
 	self.frame.w = self.w;
 	self.frame.h = self.h;
-end
+end 
 
 function Ball.update(self,deltaT)
 	self.speedX = self.speedX + self.accelX*(deltaT/1000);
