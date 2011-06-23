@@ -36,6 +36,8 @@ function GameManager_:startGame ()
 	--Runtime:addEventListener ("accelerometer", onAccelerate);
 	Runtime:addEventListener( "enterFrame" , testAccel);
 	Runtime:addEventListener("enterFrame", gameLoop);
+	
+	HUD:showHUD();
 end
 
 function GameManager_:gameOver ()
@@ -67,7 +69,7 @@ function GameManager_:centerMap()
 	latestYOffset = yOffset;
 
 	convertToLocalScreen(ball.image,ball.x+xOffset,ball.y-yOffset);
-	for i=0, table.maxn(platforms)-1 do
+	for i=1, table.maxn(platforms) do
 		if platforms[i] ~= nil then	
 			convertToLocalScreen(platforms[i].image,platforms[i].x,platforms[i].y-yOffset);
 		end
@@ -76,7 +78,7 @@ end
 
 function GameManager_:clearPlatforms () 
 
-	for j=0, table.maxn(platforms)-1 do
+	for j=1, table.maxn(platforms) do
 		if platforms[j] ~= nil then
 			if (ball.y - platforms[j].y) > 300 then
 					display.remove(platforms[j].image);

@@ -18,6 +18,7 @@ __NUMBER_OF_PLATFROMS__ = 101;
 
 platforms = {}
 
+HUD:hideHUD();
 
 lastTime = 0;
 function gameLoop ()
@@ -25,7 +26,7 @@ function gameLoop ()
 	deltaT = system.getTimer()-lastTime;
 	lastTime = system.getTimer();
 	ball.update(ball,deltaT);
-	for i=0, table.maxn(platforms)-1 do
+	for i=1, table.maxn(platforms) do
 		test = ball.testOverPlatform(ball,platforms[i]);
 		if test then
 			if ball.speedY<0 then
@@ -44,4 +45,4 @@ function gameLoop ()
 	HUD:updateDistance(math.floor(latestYOffset/3));
 end
 
-Menu.showMenu(Menu);
+Menu.createMenu(Menu);
