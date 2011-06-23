@@ -7,8 +7,12 @@ remote.startServer( "8080" )
 require ("Utils");
 require ("Platform");
 require ("Ball");
+require ("HUD");
 require ("GameManager");
 require ("Menu")
+
+system.setIdleTimer( false );
+display.setStatusBar(display.HiddenStatusBar);
 
 __NUMBER_OF_PLATFROMS__ = 101;
 

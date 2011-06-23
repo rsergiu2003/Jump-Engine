@@ -1,11 +1,11 @@
-GameManager_ = {pause=true};
+GameManager_ = {pause=true,distance};
 
 GameManager_.metatable = { __index = GameManager_ };
 GameManager_.new = function(name)
 	local self = {}
 	setmetatable(self, GameManager_.metatable);
 
-	if name ~= nil then self:setName(name); end
+	self.distance = 0;
 	
 	return self;
 end
@@ -38,6 +38,10 @@ function GameManager_:startGame ()
 	Runtime:addEventListener("enterFrame", gameLoop);
 end
 
+function GameManager_:gameOver ()
+	
+end
+
 function GameManager_:morePlatforms(nr_platforms,offset) 
 	for i=1, nr_platforms do
 		local aPlatform = Platform.new();
@@ -57,7 +61,7 @@ function GameManager_:centerMap()
 	end
 	
 	if yOffset < latestYOffset then 
-		--yOffset = latestYOffset;
+		yOffset = latestYOffset;
 	end
 	
 	latestYOffset = yOffset;
