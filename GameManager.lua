@@ -32,15 +32,15 @@ function GameManager_:startGame ()
 		print "game already in progress";
 		return false;
 	end
-	ball = Ball;
-	ball.init(ball);
+	
+	ball.x = 240;
+	ball.y = 100;
 
 	lastTime = system.getTimer();
 
 	maxY = 0;
 	
-	ball.x = 240;
-	ball.y = 100;
+	latestYOffset = 0;
 	
 	GameManager:morePlatforms(__NUMBER_OF_PLATFROMS__,0);
 	
@@ -50,6 +50,30 @@ function GameManager_:startGame ()
 	
 	HUD:showHUD();
 	self.gameInProgress = true;
+end
+
+function GameManager_:restartGame ()
+	--remove all platforms, all monsters, reset timers and points
+	for j=0, table.maxn(platforms) do
+		print ("renmove: " .. j);
+		if platforms[j] ~= nil then
+			display.remove(platforms[j].image);
+			table.remove(platforms,0);
+		end
+	end
+	
+	print ("remain: "..table.maxn(platforms));
+	
+	for j=0, table.maxn(mobsters) do
+		if mobsters[j] ~= nil then
+			display.remove(mobsters[j].image);
+			table.remove(mobsters,0);
+		end
+	end
+	
+	self.gameInProgress = false;
+	
+	GameManager:startGame();
 end
 
 function GameManager_:gameOver ()
@@ -71,12 +95,13 @@ end
 
 function GameManager_:morePlatforms(nr_platforms,offset) 
 	for i=1, nr_platforms do
+		print ("create: "..i);
 		local aPlatform = Platform.new();
 		aPlatform:init(math.random(20,300),i*50+offset)
-		table.insert(platforms,1,aPlatform);
+		table.insert(platforms,aPlatform);
 		self.platformsGroup:insert(aPlatform.image);
 		--create a monster ?
-		if math.random(0,10)==0 then 
+		if math.random(0,4)==0 then 
 			GameManager_:createMonster (aPlatform.x,aPlatform.y+30);
 		end
 	end
@@ -120,12 +145,19 @@ function GameManager_:clearPlatforms ()
 			end
 		end
 	end
+	for j=1, table.maxn(mobsters) do
+		if mobsters[j] ~= nil then
+			if (ball.y - mobsters[j].y) > 400 then
+					display.remove(mobsters[j].image);
+					table.remove(mobsters,j);
+			end
+		end
+	end
  end
 
 -- Monsters Management
 function GameManager_:createMonster (x,y)
-		print "create monster";
-		aMonster = Monster.new(x,y);
+		local aMonster = Monster.new(x,y);
 		table.insert(mobsters,1,aMonster);
 		GameManager.monstersGroup:insert(aMonster.image);
 		convertToLocalScreen(aMonster.image,x,y);

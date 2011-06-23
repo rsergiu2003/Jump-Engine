@@ -15,7 +15,7 @@ require ("HUD");
 require ("GameManager");
 require ("Menu")
 
-__NUMBER_OF_PLATFROMS__ = 101;
+__NUMBER_OF_PLATFROMS__ = 50;
 
 platforms = {} -- the platforms
 mobsters =  {} -- the monsters

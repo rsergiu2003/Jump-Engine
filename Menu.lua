@@ -20,6 +20,13 @@ function Menu.createMenu (self)
 	self.levelsButton.y = 100;
 	self.levelsButton.x = -1*self.levelsButton.width/2;
 	transition.to(self.levelsButton,{time=200,delay=100,x=display.contentWidth/2});
+	function self.levelsButton:touch(event)
+		if event.phase == 'ended' then
+			Menu.hideMenu(Menu);
+			GameManager:restartGame ();
+		end
+	end
+	self.levelsButton:addEventListener("touch", self.levelsButton);
 	
 	self.continueButton = display.newImage("images/continue.gif");
 	self.continueButton.y = 150;
@@ -37,7 +44,6 @@ function Menu.createMenu (self)
 	self.helpButton.y = 200;
 	self.helpButton.x = -1*self.helpButton.width/2;
 	transition.to(self.helpButton,{time=200,delay=300,x=display.contentWidth/2});
-	
 	
 end
 
@@ -63,6 +69,9 @@ end
 
 function Menu.hideAnimatinDone()
 	if Menu.lastMenuAction == Menu.MenuActionStart then 
+		ball = Ball;
+		ball.init(ball);
+
 		GameManager:startGame();
 	end
 	
