@@ -1,4 +1,4 @@
-GameManager_ = {pause=true,distance};
+GameManager_ = {pause=true,distance,gameInProgress=false};
 
 GameManager_.metatable = { __index = GameManager_ };
 GameManager_.new = function(name)
@@ -21,6 +21,11 @@ local function testAccel ()
 end
 
 function GameManager_:startGame ()
+	
+	if self.gameInProgress == true then
+		print "game already in progress";
+		return false;
+	end
 	ball = Ball;
 	ball.init(ball);
 
@@ -38,17 +43,35 @@ function GameManager_:startGame ()
 	Runtime:addEventListener("enterFrame", gameLoop);
 	
 	HUD:showHUD();
+	self.gameInProgress = true;
 end
 
 function GameManager_:gameOver ()
 	
 end
 
+function GameManager_:pauseGame ()
+	self.pause = true;
+	Runtime:removeEventListener("enterFrame", gameLoop);
+end
+
+function GameManager_:resumeGame()
+	lastTime = system.getTimer();
+	Runtime:addEventListener("enterFrame", gameLoop);
+	self.pause = false;
+end
+
+-- Platforms management
+
 function GameManager_:morePlatforms(nr_platforms,offset) 
 	for i=1, nr_platforms do
 		local aPlatform = Platform.new();
 		aPlatform:init(math.random(20,300),i*50+offset)
 		table.insert(platforms,1,aPlatform);
+		--create a monster ?
+		if math.random(0,5)==0 then 
+			GameManager_:createMonster (aPlatform.x,aPlatform.y+30);
+		end
 	end
 	maxY = (nr_platforms+1)*50+offset;
 end
@@ -74,6 +97,11 @@ function GameManager_:centerMap()
 			convertToLocalScreen(platforms[i].image,platforms[i].x,platforms[i].y-yOffset);
 		end
 	end
+	for i=1, table.maxn(mobsters) do
+			if mobsters[i] ~= nil then	
+				convertToLocalScreen(mobsters[i].image,mobsters[i].x,mobsters[i].y-yOffset);
+			end
+	end
 end
 
 function GameManager_:clearPlatforms () 
@@ -87,5 +115,11 @@ function GameManager_:clearPlatforms ()
 		end
 	end
  end
+
+-- Monsters Management
+function GameManager_:createMonster (x,y)
+		local aMonster = Monster.new(x,y);
+		table.insert(mobsters,1,aMonster);
+end
 
 GameManager = GameManager_.new();

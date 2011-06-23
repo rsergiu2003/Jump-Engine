@@ -28,6 +28,7 @@ function Menu.createMenu (self)
 	function self.continueButton:touch(event)
 		if event.phase == 'ended' then
 			Menu.hideMenu(Menu);
+			GameManager:resumeGame();
 		end
 	end
 	self.continueButton:addEventListener("touch", self.continueButton);

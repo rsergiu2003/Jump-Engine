@@ -16,6 +16,7 @@ HUD_.new = function()
 	self.pause.x = display.contentWidth - 30;
 	function self.pause:touch(event)
 			if event.phase == 'ended' then
+				GameManager:pauseGame();
 				Menu.showMenu(Menu);
 			end
 	end
