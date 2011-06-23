@@ -18,6 +18,7 @@ __NUMBER_OF_PLATFROMS__ = 101;
 
 platforms = {}
 
+
 lastTime = 0;
 function gameLoop ()
 	--print ("loop"..ball.y);
@@ -39,6 +40,8 @@ function gameLoop ()
 	if maxY - ball.y <1000 then 
 		GameManager:morePlatforms (50,maxY);
 	end
+	
+	HUD:updateDistance(math.floor(latestYOffset/3));
 end
 
 Menu.showMenu(Menu);
