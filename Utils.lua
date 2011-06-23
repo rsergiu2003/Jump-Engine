@@ -67,6 +67,6 @@ function convertToLocalScreen (image,x,y)
 	if image.y>0 and image.y<480 then 
 		image.isVisible = true;
 	else
-		image.isVisible = false;
+		image.isVisible = true;
 	end
 end

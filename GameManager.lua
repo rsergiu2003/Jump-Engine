@@ -1,4 +1,4 @@
-GameManager_ = {pause=true,distance,gameInProgress=false};
+GameManager_ = {pause=true,distance,gameInProgress=false,mainGroup,platformsGroup,monstersGroup};
 
 GameManager_.metatable = { __index = GameManager_ };
 GameManager_.new = function(name)
@@ -6,6 +6,12 @@ GameManager_.new = function(name)
 	setmetatable(self, GameManager_.metatable);
 
 	self.distance = 0;
+	self.mainGroup = display.newGroup();
+	self.platformsGroup = display.newGroup();
+	self.monstersGroup = display.newGroup();
+	
+	self.mainGroup:insert(self.platformsGroup);
+	self.mainGroup:insert(self.monstersGroup);
 	
 	return self;
 end
@@ -68,12 +74,19 @@ function GameManager_:morePlatforms(nr_platforms,offset)
 		local aPlatform = Platform.new();
 		aPlatform:init(math.random(20,300),i*50+offset)
 		table.insert(platforms,1,aPlatform);
+		self.platformsGroup:insert(aPlatform.image);
 		--create a monster ?
-		if math.random(0,5)==0 then 
+		if math.random(0,10)==0 then 
 			GameManager_:createMonster (aPlatform.x,aPlatform.y+30);
 		end
 	end
 	maxY = (nr_platforms+1)*50+offset;
+	
+	for i=1, table.maxn(platforms) do
+		if platforms[i] ~= nil then	
+			convertToLocalScreen(platforms[i].image,platforms[i].x,platforms[i].y);
+		end
+	end
 end
 
 latestYOffset = 0;
@@ -92,16 +105,9 @@ function GameManager_:centerMap()
 	latestYOffset = yOffset;
 
 	convertToLocalScreen(ball.image,ball.x+xOffset,ball.y-yOffset);
-	for i=1, table.maxn(platforms) do
-		if platforms[i] ~= nil then	
-			convertToLocalScreen(platforms[i].image,platforms[i].x,platforms[i].y-yOffset);
-		end
-	end
-	for i=1, table.maxn(mobsters) do
-			if mobsters[i] ~= nil then	
-				convertToLocalScreen(mobsters[i].image,mobsters[i].x,mobsters[i].y-yOffset);
-			end
-	end
+
+	self.platformsGroup.y = yOffset;
+	self.monstersGroup.y = yOffset;
 end
 
 function GameManager_:clearPlatforms () 
@@ -118,8 +124,11 @@ function GameManager_:clearPlatforms ()
 
 -- Monsters Management
 function GameManager_:createMonster (x,y)
-		local aMonster = Monster.new(x,y);
+		print "create monster";
+		aMonster = Monster.new(x,y);
 		table.insert(mobsters,1,aMonster);
+		GameManager.monstersGroup:insert(aMonster.image);
+		convertToLocalScreen(aMonster.image,x,y);
 end
 
 GameManager = GameManager_.new();
