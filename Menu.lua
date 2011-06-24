@@ -4,7 +4,7 @@ Menu.MenuActionStart = 1;
 Menu.MenuActionNoAction = 0;
 
 function Menu.createMenu (self)
-	self.startButton = display.newImage("images/Start.png");
+	self.startButton = display.newImage("Images/Start.png");
 	self.startButton.y = 50;
 	self.startButton.x = -1*self.startButton.width/2;
 	transition.to(self.startButton,{time=200,delay=0,x=display.contentWidth/2});
@@ -16,7 +16,7 @@ function Menu.createMenu (self)
 	end
 	self.startButton:addEventListener("touch", self.startButton);
 	
-	self.levelsButton = display.newImage("images/levels.jpg");
+	self.levelsButton = display.newImage("Images/levels.jpg");
 	self.levelsButton.y = 100;
 	self.levelsButton.x = -1*self.levelsButton.width/2;
 	transition.to(self.levelsButton,{time=200,delay=100,x=display.contentWidth/2});
@@ -28,7 +28,7 @@ function Menu.createMenu (self)
 	end
 	self.levelsButton:addEventListener("touch", self.levelsButton);
 	
-	self.continueButton = display.newImage("images/continue.gif");
+	self.continueButton = display.newImage("Images/continue.gif");
 	self.continueButton.y = 150;
 	self.continueButton.x =-1*self.continueButton.width/2;
 	transition.to(self.continueButton,{time=200,delay=200,x=display.contentWidth/2});
@@ -40,7 +40,7 @@ function Menu.createMenu (self)
 	end
 	self.continueButton:addEventListener("touch", self.continueButton);
 	
-	self.helpButton = display.newImage("images/help.gif");
+	self.helpButton = display.newImage("Images/help.gif");
 	self.helpButton.y = 200;
 	self.helpButton.x = -1*self.helpButton.width/2;
 	transition.to(self.helpButton,{time=200,delay=300,x=display.contentWidth/2});

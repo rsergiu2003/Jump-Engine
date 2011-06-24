@@ -1,11 +1,10 @@
-system.setIdleTimer( false );
+--system.setIdleTimer( false );
 display.setStatusBar(display.HiddenStatusBar);
 
 --Testing accelerometer
-local remote = require("remote")
+--local remote = require("remote")
 -- Start The Remote On Port 8080
-remote.startServer( "8080" )
-
+--remote.startServer( "8080" )
 
 require ("Utils");
 require ("Platform");
@@ -13,7 +12,7 @@ require ("Monster");
 require ("Ball");
 require ("HUD");
 require ("GameManager");
-require ("Menu")
+require ("Menu");
 
 __NUMBER_OF_PLATFROMS__ = 50;
 

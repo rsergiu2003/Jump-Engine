@@ -11,7 +11,7 @@ HUD_.new = function()
 	self.distance:setTextColor(255, 255, 255)
 	self.group:insert(self.distance);
 	
-	self.pause = display.newImage("images/pause.png");
+	self.pause = display.newImage("Images/pause.png");
 	self.group:insert(self.pause);
 	self.pause.x = display.contentWidth - 30;
 	function self.pause:touch(event)

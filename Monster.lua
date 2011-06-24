@@ -6,7 +6,7 @@ Monster.new = function(x,y)
 	local self = {}
 	setmetatable(self, Monster.metatable);
 
-	self.image = display.newImage("images/monster1.png");
+	self.image = display.newImage("Images/monster1.png");
 
 	self.image.x = x;
 	self.image.y = y;

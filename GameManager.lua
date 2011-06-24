@@ -1,3 +1,8 @@
+--[[
+
+This is the heart of the game, all the game logic and game related variables are handled here.
+
+--]]
 GameManager_ = {pause=true,distance,gameInProgress=false,mainGroup,platformsGroup,monstersGroup};
 
 GameManager_.metatable = { __index = GameManager_ };
@@ -44,8 +49,8 @@ function GameManager_:startGame ()
 	
 	GameManager:morePlatforms(__NUMBER_OF_PLATFROMS__,0);
 	
-	--Runtime:addEventListener ("accelerometer", onAccelerate);
-	Runtime:addEventListener( "enterFrame" , testAccel);
+	Runtime:addEventListener ("accelerometer", onAccelerate);
+	--Runtime:addEventListener( "enterFrame" , testAccel);
 	Runtime:addEventListener("enterFrame", gameLoop);
 	
 	HUD:showHUD();
