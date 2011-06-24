@@ -14,5 +14,11 @@ Monster.new = function(x,y)
 	self.x = x;
 	self.y = y;
 
+	self.frame = Rect.new();
+	self.frame.x = x - self.w/2;
+	self.frame.y = y - self.h/2;
+	self.frame.w = self.w;
+	self.frame.h = self.h;
+	
 	return self;
 end

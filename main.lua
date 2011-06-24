@@ -27,16 +27,27 @@ function gameLoop ()
 	deltaT = system.getTimer()-lastTime;
 	lastTime = system.getTimer();
 	ball.update(ball,deltaT);
+	
+	--test if a platform it's hit
 	for i=1, table.maxn(platforms) do
 		test = ball.testOverPlatform(ball,platforms[i]);
 		if test then
 			if ball.speedY<0 then
 				ball.speedY = 600;
 			end
-		else
 		end
 	end
 	
+	--test if we hit a monster
+	for i=1, table.maxn(mobsters) do
+		test = rectIntersectsRect(ball.frame,mobsters[i].frame);
+		if test then
+			display.remove(mobsters[i].image);
+			table.remove(mobsters,i);
+			GameManager:pauseGame();
+			Menu.showGameOver(Menu);
+		end
+	end	
 	GameManager:clearPlatforms();
 	GameManager:centerMap ();
 	if maxY - ball.y <1000 then 
