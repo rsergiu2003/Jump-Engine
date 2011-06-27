@@ -60,15 +60,12 @@ end
 function GameManager_:restartGame ()
 	--remove all platforms, all monsters, reset timers and points
 		for j=table.maxn(platforms),0,-1  do
-		print ("renmove: " .. j);
 		if platforms[j] ~= nil then
 			display.remove(platforms[j].image);
 			table.remove(platforms,j);
 		end
 	end
-	
-	print ("remain: "..table.maxn(platforms));
-	
+		
 	for j=table.maxn(mobsters),0,-1  do
 		if mobsters[j] ~= nil then
 			display.remove(mobsters[j].image);
@@ -100,7 +97,6 @@ end
 
 function GameManager_:morePlatforms(nr_platforms,offset) 
 	for i=1, nr_platforms do
-		print ("create: "..i);
 		local aPlatform = Platform.new();
 		aPlatform:init(math.random(20,300),i*50+offset)
 		table.insert(platforms,aPlatform);

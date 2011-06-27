@@ -39,13 +39,18 @@ function gameLoop ()
 	end
 	
 	--test if we hit a monster
-	for i=1, table.maxn(mobsters) do
-		test = rectIntersectsRect(ball.frame,mobsters[i].frame);
-		if test then
-			display.remove(mobsters[i].image);
-			table.remove(mobsters,i);
-			GameManager:pauseGame();
-			Menu.showGameOver(Menu);
+	for i=table.maxn(mobsters),1,-1  do
+		if mobsters[i]~=nil then
+			test = rectIntersectsRect(ball.frame,mobsters[i].frame);
+			mobsters[i]:update();
+			if test then
+				display.remove(mobsters[i].image);
+				table.remove(mobsters,i);
+	--[[
+				GameManager:pauseGame();
+				Menu.showGameOver(Menu);
+	--]]
+			end
 		end
 	end	
 	GameManager:clearPlatforms();
