@@ -103,7 +103,7 @@ function GameManager_:morePlatforms(nr_platforms,offset)
 		table.insert(platforms,aPlatform);
 		self.platformsGroup:insert(aPlatform.image);
 		--create a monster ?
-		if math.random(0,10)==0 then 
+		if math.random(0,2)==0 then 
 			GameManager_:createMonster (aPlatform.x,aPlatform.y+30);
 		end
 	end

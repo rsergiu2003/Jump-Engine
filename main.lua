@@ -60,10 +60,19 @@ function gameLoop ()
 	for i=table.maxn(bullets),1,-1 do
 		if bullets ~= nil then
 			if bullets[i]:update() == false then
-				print "remove bullet";
 				--will return false if it have to be removed
 				display.remove(bullets[i].image);
 				table.remove(bullets,i);
+			else
+				-- if it's ok check over monsters
+				for j=table.maxn(mobsters),1,-1  do
+					if mobsters[j]~=nil then
+						if rectContainsPoint(mobsters[j].frame,Point.new(bullets[i].x,bullets[i].y))==true then
+							display.remove(mobsters[j].image);
+							table.remove(mobsters,j);
+						end
+					end
+				end
 			end
 		end
 	end
@@ -75,6 +84,7 @@ function gameLoop ()
 	end
 	
 	HUD:updateDistance(math.floor(latestYOffset/3));
+	--print ("platforms: "..table.maxn(platforms)..", monsters: "..table.maxn(mobsters)..", bullets: "..table.maxn(bullets));
 end
 
 

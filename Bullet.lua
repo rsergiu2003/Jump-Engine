@@ -22,7 +22,6 @@ Bullet.new = function(x,y)
 	
 	--calculate the speed
 	distance = calculatePointsDistance(Point.new(x,y),Point.new(ball.image.x,ball.image.y));
-	print (distance);
 	
 	xDiff = x - ball.image.x;
 	yDiff = ball.image.y-y;
@@ -34,6 +33,7 @@ Bullet.new = function(x,y)
 	self.xSpeed = maxSpeed*xAspect;
 	self.ySpeed = maxSpeed*yAspect;
 	
+	-- init the creation time
 	self.time = system.getTimer();
 	
 	return self;
