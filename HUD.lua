@@ -19,6 +19,7 @@ HUD_.new = function()
 				GameManager:pauseGame();
 				Menu.showMenu(Menu);
 			end
+			return true;
 	end
 	self.pause:addEventListener("touch", self.pause);
 	

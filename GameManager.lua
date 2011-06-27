@@ -52,6 +52,7 @@ function GameManager_:startGame ()
 	Runtime:addEventListener ("accelerometer", onAccelerate);
 	--Runtime:addEventListener( "enterFrame" , testAccel);
 	Runtime:addEventListener("enterFrame", gameLoop);
+	Runtime:addEventListener("touch", touch);
 	
 	HUD:showHUD();
 	self.gameInProgress = true;
@@ -162,6 +163,13 @@ function GameManager_:createMonster (x,y)
 		table.insert(mobsters,1,aMonster);
 		GameManager.monstersGroup:insert(aMonster.image);
 		convertToLocalScreen(aMonster.image,x,y);
+end
+
+-- touch management
+function GameManager_:touchOnScreen(event)
+	if event.phase == 'ended' then
+		print (event.x.." "..event.y);
+	end
 end
 
 GameManager = GameManager_.new();

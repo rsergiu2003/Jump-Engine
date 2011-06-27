@@ -9,6 +9,7 @@ display.setStatusBar(display.HiddenStatusBar);
 require ("Utils");
 require ("Platform");
 require ("Monster");
+require ("Bullet");
 require ("Ball");
 require ("HUD");
 require ("GameManager");
@@ -62,4 +63,8 @@ function gameLoop ()
 	HUD:updateDistance(math.floor(latestYOffset/3));
 end
 
+
+function touch(event)
+	GameManager:touchOnScreen(event);
+end
 Menu.createMenu(Menu);

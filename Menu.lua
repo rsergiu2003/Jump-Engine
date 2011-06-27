@@ -17,6 +17,7 @@ function Menu.createMenu (self)
 		if event.phase == 'ended' then
 			Menu.startButtonPressed(Menu);
 		end
+		return true;
 	end
 	self.startButton:addEventListener("touch", self.startButton);
 	Menu.buttonsGroup:insert(self.startButton);
@@ -30,6 +31,7 @@ function Menu.createMenu (self)
 			Menu.lastMenuAction = Menu.MenuActionReStart;
 			Menu.hideMenu(Menu);
 		end
+		return true;
 	end
 	self.levelsButton:addEventListener("touch", self.levelsButton);
 	Menu.buttonsGroup:insert(self.levelsButton);
@@ -44,6 +46,7 @@ function Menu.createMenu (self)
 			Menu.hideMenu(Menu);
 			GameManager:resumeGame();
 		end
+		return true;
 	end
 	self.continueButton:addEventListener("touch", self.continueButton);
 	Menu.buttonsGroup:insert(self.continueButton);
