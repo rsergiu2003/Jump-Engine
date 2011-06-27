@@ -117,6 +117,7 @@ function GameManager_:morePlatforms(nr_platforms,offset)
 end
 
 latestYOffset = 0;
+currentOffset = 0;
 function GameManager_:centerMap()
 	--calculate offsets
 	local xOffset = 0;
@@ -135,6 +136,8 @@ function GameManager_:centerMap()
 
 	self.platformsGroup.y = yOffset;
 	self.monstersGroup.y = yOffset;
+	
+	currentOffset = yOffset;
 end
 
 function GameManager_:clearPlatforms () 
@@ -165,10 +168,19 @@ function GameManager_:createMonster (x,y)
 		convertToLocalScreen(aMonster.image,x,y);
 end
 
+
+--fire and bullets management
+function GameManager_:fire(event)
+	newBullet = Bullet.new(event.x,event.y);
+	self.monstersGroup:insert(newBullet.image);
+	convertToLocalScreen(newBullet.image,ball.x,ball.y);	
+	table.insert(bullets,newBullet);
+end
+
 -- touch management
 function GameManager_:touchOnScreen(event)
 	if event.phase == 'ended' then
-		print (event.x.." "..event.y);
+		GameManager:fire(event);
 	end
 end
 

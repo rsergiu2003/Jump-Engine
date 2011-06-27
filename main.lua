@@ -19,6 +19,7 @@ __NUMBER_OF_PLATFROMS__ = 50;
 
 platforms = {} -- the platforms
 mobsters =  {} -- the monsters
+bullets = {} -- the bullets
 
 HUD:hideHUD();
 
@@ -54,6 +55,19 @@ function gameLoop ()
 			end
 		end
 	end	
+	
+	--update and test the bullets
+	for i=table.maxn(bullets),1,-1 do
+		if bullets ~= nil then
+			if bullets[i]:update() == false then
+				print "remove bullet";
+				--will return false if it have to be removed
+				display.remove(bullets[i].image);
+				table.remove(bullets,i);
+			end
+		end
+	end
+	
 	GameManager:clearPlatforms();
 	GameManager:centerMap ();
 	if maxY - ball.y <1000 then 

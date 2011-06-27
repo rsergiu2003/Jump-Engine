@@ -60,6 +60,12 @@ function rectContainsPoint(rect,point)
 	return false;
 end
 
+function calculatePointsDistance(p1,p2)
+	diffX = p1.x-p2.x;
+	diffY = p1.y-p2.y;
+	
+	return math.sqrt(diffX*diffX+diffY*diffY);
+end
 function convertToLocalScreen (image,x,y) 
 	image.y = 480 - y;
 	image.x = x;
