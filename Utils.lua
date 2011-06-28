@@ -1,3 +1,8 @@
+--My Constants
+__SCREEN_HEIGHT__ = display.contentHeight - 48;
+
+
+
 Point = {x,y}
 
 Point.metatable = { __index = Point };
@@ -67,7 +72,7 @@ function calculatePointsDistance(p1,p2)
 	return math.sqrt(diffX*diffX+diffY*diffY);
 end
 function convertToLocalScreen (image,x,y) 
-	image.y = 480 - y;
+	image.y = __SCREEN_HEIGHT__ - y;
 	image.x = x;
 --[[
 
