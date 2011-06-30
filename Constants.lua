@@ -20,5 +20,9 @@
     along with Jump Engine.  If not, see <http://www.gnu.org/licenses/>.
 
 	Copyright (C) 2011  Rosu Sergiu
---]]__SCREEN_HEIGHT__ = display.contentHeight - 48;
-__SERVER_URL__ = ""
+--]]
+
+--adapted screen size, leave space for adds
+__SCREEN_HEIGHT__ = display.contentHeight - 48;
+-- the url of the server, all requests will be made relative to this url
+__SERVER_URL__ = "http://localhost/leveleditor/";

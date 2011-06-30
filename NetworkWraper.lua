@@ -31,3 +31,18 @@ NetworkWraper_.new = function()
 
 	return self;
 end
+
+function NetworkWraper_:LoadLevel(location)
+	print ("load level from remote server: "..location);
+	network.request( __SERVER_URL__..location, "GET", NetworkWraper_loadLevelArrived );
+end
+
+function NetworkWraper_loadLevelArrived(event)
+	NetworkWraper_:LoadLevelArrived(event);
+end
+
+function NetworkWraper_:LoadLevelArrived(event)
+	LevelManager:LevelDataArrived(event.response);
+end
+
+NetworkWraper = NetworkWraper_.new();

@@ -39,6 +39,7 @@ function Menu.createMenu (self)
 	function self.startButton:touch(event)
 		if event.phase == 'ended' then
 			Menu.startButtonPressed(Menu);
+			LevelManager:LoadLevel("test.json");
 		end
 		return true;
 	end

@@ -29,14 +29,18 @@ local remote = require("remote")
 -- Start The Remote On Port 8080
 remote.startServer( "8080" )
 
+require ("Constants");
 require ("Utils");
+require ("Json");
 require ("Platform");
 require ("Monster");
 require ("Bullet");
 require ("Ball");
 require ("HUD");
+require ("LevelManager");
 require ("GameManager");
 require ("Menu");
+require ("NetworkWraper");
 
 __NUMBER_OF_PLATFROMS__ = 50;
 
@@ -102,7 +106,7 @@ function gameLoop ()
 	
 	GameManager:clearPlatforms();
 	GameManager:centerMap ();
-	if maxY - ball.y <1000 then 
+	if maxY - ball.y <800 then 
 		GameManager:morePlatforms (50,maxY);
 	end
 	
