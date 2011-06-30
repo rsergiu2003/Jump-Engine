@@ -117,6 +117,9 @@ end
 -- Platforms management
 
 function GameManager_:morePlatforms(nr_platforms,offset) 
+	
+--[[
+		
 	for i=1, nr_platforms do
 		local aPlatform = Platform.new();
 		aPlatform:init(math.random(20,300),i*50+offset)
@@ -128,6 +131,7 @@ function GameManager_:morePlatforms(nr_platforms,offset)
 		end
 	end
 	maxY = (nr_platforms+1)*50+offset;
+--]]
 	
 	for i=1, table.maxn(platforms) do
 		if platforms[i] ~= nil then	
@@ -179,6 +183,13 @@ function GameManager_:clearPlatforms ()
 		end
 	end
  end
+
+function GameManager_:createPlatform(x,y)
+		local aPlatform = Platform.new();
+		aPlatform:init(x,y);
+		table.insert(platforms,aPlatform);
+		GameManager.platformsGroup:insert(aPlatform.image);
+end
 
 -- Monsters Management
 function GameManager_:createMonster (x,y)
