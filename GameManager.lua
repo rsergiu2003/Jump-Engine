@@ -1,7 +1,27 @@
 --[[
 
-This is the heart of the game, all the game logic and game related variables are handled here.
+	Created by Rosu Sergiu on 30/Jun/2011
 
+	Jump Engine it's a game engine for createing jumping games for mobile devices.
+
+	This is the heart of the game, all the game logic and game related variables are handled here.
+
+	This file is part of Jump Engine.
+
+    Jump Engine is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Jump Engine is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Jump Engine.  If not, see <http://www.gnu.org/licenses/>.
+
+	Copyright (C) 2011  Rosu Sergiu
 --]]
 GameManager_ = {pause=true,distance,gameInProgress=false,mainGroup,platformsGroup,monstersGroup};
 
@@ -22,7 +42,7 @@ GameManager_.new = function(name)
 end
 
 local function onAccelerate (event)
-	ball.speedX = event.xGravity*700;
+	ball.speedX = event.xGravity*1500;
 end
 
 local function testAccel () 
@@ -49,8 +69,8 @@ function GameManager_:startGame ()
 	
 	GameManager:morePlatforms(__NUMBER_OF_PLATFROMS__,0);
 	
-	Runtime:addEventListener ("accelerometer", onAccelerate);
-	--Runtime:addEventListener( "enterFrame" , testAccel);
+	--Runtime:addEventListener ("accelerometer", onAccelerate);
+	Runtime:addEventListener( "enterFrame" , testAccel);
 	Runtime:addEventListener("enterFrame", gameLoop);
 	Runtime:addEventListener("touch", touch);
 	
