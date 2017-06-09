@@ -1,0 +1,76 @@
+[
+  {
+    "type": "shape_designer.figure.ExtPolygon",
+    "id": "7e2bb901-0ff0-53d0-4417-e72ed75ad5fa",
+    "x": 625,
+    "y": 216,
+    "width": 272,
+    "height": 137,
+    "alpha": 1,
+    "angle": 0,
+    "userData": {
+      "baseClass": "draw2d.SetFigure",
+      "code": "/**\n * by 'Draw2D Shape Designer'\n *\n * Custom JS code to tweak the standard behaviour of the generated\n * shape. add your custome code and event handler here.\n *\n *\n */\ntestShape = testShape.extend({\n\n    init: function(attr, setter, getter){\n         this._super(attr, setter, getter);\n\n         // your special code here\n    },\n\n    /**\n     *  Called by the simulator for every calculation\n     *  loop\n     *  @required\n     **/\n    calculate:function()\n    {\n    },\n\n\n    /**\n     *  Called if the simulation mode is starting\n     *  @required\n     **/\n    onStart:function()\n    {\n    },\n\n    /**\n     *  Called if the simulation mode is stopping\n     *  @required\n     **/\n    onStop:function()\n    {\n    }\n});"
+    },
+    "cssClass": "shape_designer_figure_PolyRect",
+    "ports": [],
+    "bgColor": "#387AFF",
+    "color": "#303030",
+    "stroke": 1,
+    "radius": 0,
+    "dasharray": null,
+    "vertices": [
+      {
+        "x": 768,
+        "y": 273
+      },
+      {
+        "x": 768,
+        "y": 216
+      },
+      {
+        "x": 625,
+        "y": 216
+      },
+      {
+        "x": 625,
+        "y": 353
+      },
+      {
+        "x": 768,
+        "y": 353
+      },
+      {
+        "x": 768,
+        "y": 312
+      },
+      {
+        "x": 897,
+        "y": 312
+      },
+      {
+        "x": 897,
+        "y": 273
+      },
+      {
+        "x": 768,
+        "y": 273
+      }
+    ],
+    "blur": 0,
+    "filters": [
+      {
+        "name": "shape_designer.filter.PositionFilter"
+      },
+      {
+        "name": "shape_designer.filter.SizeFilter"
+      },
+      {
+        "name": "shape_designer.filter.StrokeFilter"
+      },
+      {
+        "name": "shape_designer.filter.FillColorFilter"
+      }
+    ]
+  }
+]
